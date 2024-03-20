@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+    php:
+        container_name: shev-php-container
+        build:
+            context: docker/php
+            dockerfile: dev/Dockerfile
+        restart: always
+        env_file:
+            - .env
+        volumes:
+            - ./docker/php/dev/log:/var/www/log
+            - ./docker/php/dev/configuration:/usr/local/etc/php
+            - .:/app
+            - ./docker/php:/etc/cron.d
+            - .env:/.env
+        networks:
+            - shev-net
+
+    http:
+        container_name: shev-http-container
+        build:
+            context: docker/http
+            dockerfile: Dockerfile
+        volumes:
+            - ./docker/http/conf.d:/etc/nginx/conf.d
+            - .:/app
+            - .env:/.env
+        networks:
+            - shev-net
+
+    db:
+        container_name: shev-db-container
+        image: mysql:latest
+        restart: always
+        volumes:
+            - db-data:/var/lib/mysql
+            - .env:/.env
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        networks:
+            - shev-net
+
+volumes:
+    db-data:
+
+networks:
+    shev-net:

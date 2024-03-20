@@ -1,0 +1,8 @@
+version: '3'
+services:
+    http:
+        ports:
+          - "45201:80"
+    db:
+        ports:
+          - "3326:3306"
