@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.SSH_APP_PASS }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/domains/bricolage-stage-1.pp.ua
+            cd ~/domains/bricolage-stage-1.pp.ua/public_html
             git checkout main && git pull
             /opt/cloudlinux/alt-php82/root/usr/bin/php composer.phar install
 
