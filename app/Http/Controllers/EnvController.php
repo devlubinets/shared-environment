@@ -30,7 +30,7 @@ class EnvController extends Controller
     {
         $file = $request->file('env_file');
 //        $env = Env::query()->find("")->first();
-        $env->file_name = $file->getFilename();
+        $env->file_name = $file->getClientOriginalName();
         $env->file_size = 2130120301230;
         $env->save();
         $env->addMedia($file->getRealPath())->toMediaCollection();
