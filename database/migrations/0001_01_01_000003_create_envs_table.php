@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('envs', function (Blueprint $table) {
             $table->id();
             $table->string('file_name');
-            $table->string('file_size')->unique();
+            $table->string('file_size');
             $table->timestamps();
         });
     }
