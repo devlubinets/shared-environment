@@ -16,10 +16,8 @@ jobs:
           host: ${{ secrets.SSH_APP_HOST }}
           username: ${{ secrets.SSH_APP_USER }}
           password: ${{ secrets.SSH_APP_PASS }}
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            eval "$(ssh-agent -s)"
-            ssh-add ~/.ssh/shev
             cd ~/domains/bricolage-stage-1.pp.ua
             git checkout main && git pull
             /opt/cloudlinux/alt-php82/root/usr/bin/php composer.phar install
