@@ -1,24 +1,19 @@
 <?php
 
 use App\Http\Controllers\API\V1\GetEnvController;
-use App\Http\Controllers\EnvController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| API Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the "api" middleware group. Make something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("mvp_features");
-
-Route::resource("envs", EnvController::class);
-
-Route::get("/api/v1/get-env/{env}", [GetEnvController::class, "getEnv"]);
+Route::group(["env"], function () {
+    Route::get("/get-env/{env}", [GetEnvController::class, "getEnv"]);
+});
