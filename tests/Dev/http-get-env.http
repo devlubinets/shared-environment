@@ -1,1 +1,17 @@
+
+# Version 1
 GET localhost:45201/api/v1/get-env/41
+
+# Version 2
+###
+
+# curl -X GET
+#     -H "Authorization: SSH-Key $ssh_key_base64"
+#     http://example.com/api/resource
+GET localhost:45201/api/v1/get-env/41
+Authorization: SSH-Key $ssh_key_base64
+
+###
+### Add project
+### Add module
+### For project and module we can add bunch of env

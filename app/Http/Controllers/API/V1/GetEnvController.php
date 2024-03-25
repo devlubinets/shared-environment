@@ -18,6 +18,7 @@ class GetEnvController extends Controller
         $envModel = Env::query()->find($request->offsetGet("env"));
 
         if (!is_null($envModel)) {
+            /*@todo: make file from data, instead of keep files*/
             $file = $envModel->getMedia();
             return response()->download($file->first()->getPath());
         }
