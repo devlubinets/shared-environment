@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('envs', function (Blueprint $table) {
+        Schema::create('module_project', function (Blueprint $table) {
             $table->id();
-            $table->string('file_name');
-            $table->string('file_size');
-            $table->text('content')->nullable();/*@todo: update factory to remove that*/
-            $table->enum('type', ['free', 'dev', 'prod', 'other'])->default('other');
+            $table->unsignedBigInteger("project_id");
+            $table->unsignedBigInteger("module_id");
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('envs');
+        Schema::dropIfExists('module_project');
     }
 };

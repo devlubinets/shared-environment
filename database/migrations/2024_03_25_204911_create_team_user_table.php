@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('envs', function (Blueprint $table) {
+        Schema::create('team_user', function (Blueprint $table) {
             $table->id();
-            $table->string('file_name');
-            $table->string('file_size');
-            $table->text('content')->nullable();/*@todo: update factory to remove that*/
-            $table->enum('type', ['free', 'dev', 'prod', 'other'])->default('other');
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("team_id");
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('envs');
+        Schema::dropIfExists('team_user');
     }
 };
