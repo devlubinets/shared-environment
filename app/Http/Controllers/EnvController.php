@@ -28,12 +28,12 @@ class EnvController extends Controller
      */
     public function store(Request $request, Env $env)
     {
+        /*@todo: replace it by repository*/
         $file = $request->file('env_file');
-//        $env = Env::query()->find("")->first();
         $env->file_name = $file->getClientOriginalName();
         $env->file_size = $file->getSize();
+        $env->content = $file->getContent();
         $env->save();
-        $env->addMedia($file->getRealPath())->toMediaCollection();
 
         return redirect()->route("mvp_features");
     }
