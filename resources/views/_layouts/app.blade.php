@@ -9,11 +9,10 @@
     <title>@yield('title') | Shared environment</title>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 <div id="app">
     @yield('content')
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @stack('scripts')
 </body>
 </html>
