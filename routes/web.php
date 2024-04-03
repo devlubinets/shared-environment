@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\GetEnvController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\EnvController;
+use App\Http\Controllers\User\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +25,9 @@ Route::resource("envs", EnvController::class);
 
 Route::get("/api/v1/get-env/{env}", [GetEnvController::class, "getEnv"]);
 
-
 # Authentication
 Route::get("/login", [LoginController::class, "loginShow"])->name("login.form.main");
 Route::post("/login", [LoginController::class, "login"])->name("login");
 
-
+# User
+Route::get("/user/dashboard", [DashboardController::class, "show"])->name("user.dashboard");

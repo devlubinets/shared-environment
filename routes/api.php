@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Google\SingInController;
 use App\Http\Controllers\API\V1\GetEnvController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::group(["env"], function () {
     Route::get("/get-env/{env}", [GetEnvController::class, "getEnv"]);
 });
+
+Route::post("google/sing-in", [SingInController::class, "handle"])->name("api.google.sing-in");

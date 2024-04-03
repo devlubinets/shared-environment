@@ -12,6 +12,7 @@
 <div id="app">
     @yield('content')
 </div>
+
 @stack('scripts')
 </body>
 </html>

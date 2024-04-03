@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
+     * This namespace is applied to your controller routes.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $namespace = 'App\Http\Controllers';
+
+    /**
      * The path to your application's "home" route.
      *
      * Typically, users are redirected here after authentication.
@@ -20,21 +29,26 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
-     * Define your route model bindings, pattern filters, and other route configuration.
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        parent::boot();
+    }
 
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api/v1')
-                ->group(base_path('routes/api.php'));
+    /**
+     * Define your route model bindings, pattern filters, and other route configuration.
+     */
+    public function map(): void
+    {
+        Route::prefix('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-        });
+        Route::prefix('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 }
