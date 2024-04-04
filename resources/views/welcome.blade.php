@@ -5,17 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Func page</title>
+    <title>MVP function page</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
 
     <!-- Styles -->
-    <style>
-        /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
-        *, ::after, ::before {
-            box-sizing: border-box;
             border-width: 0;
             border-style: solid;
             border-color: #e5e7eb
@@ -851,9 +847,18 @@
             }
         }
     </style>
+        
+        <!-- Scripts and CSS import -->
+        @vite
+        
+        <!-- Scripts and CSS import -->
+        @vite
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
+@auth()
+    {{  $this->authUser  }}
+@endauth
 <main class="mt-6">
     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
         {{--ADD BUTTON TO LOAD .ENV FILE--}}

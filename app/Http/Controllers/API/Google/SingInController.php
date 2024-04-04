@@ -25,6 +25,6 @@ class SingInController extends Controller
 
         Auth::login($user);
 
-        return redirect("mvp_features");
+        return redirect()->route("mvp_features");
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\GetEnvController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\EnvController;
 use App\Http\Controllers\User\DashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ["authUser" => Auth::user()]);
 })->name("mvp_features");
 
 Route::resource("envs", EnvController::class);
