@@ -18,17 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', ["authUser" => Auth::user()]);
-})->name("mvp_features");
+Route::group(["middleware" => ["web"]], function () {
+    Route::get('/', function () {
+        $authUser = auth()->user();
+        return view('welcome', ["authUser" => $authUser]);
+    })->name("mvp_features");
 
-Route::resource("envs", EnvController::class);
+    Route::resource("envs", EnvController::class);
 
-Route::get("/api/v1/get-env/{env}", [GetEnvController::class, "getEnv"]);
+    Route::get("/api/v1/get-env/{env}", [GetEnvController::class, "getEnv"]);
+
+# User
+    Route::get("/user/dashboard", [DashboardController::class, "show"])->name("user.dashboard");
+});
 
 # Authentication
 Route::get("/login", [LoginController::class, "loginShow"])->name("login.form.main");
 Route::post("/login", [LoginController::class, "login"])->name("login");
 
-# User
-Route::get("/user/dashboard", [DashboardController::class, "show"])->name("user.dashboard");

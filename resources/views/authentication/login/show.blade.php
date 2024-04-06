@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 @extends('_layouts.app-auth')
 
 @section('title', 'Login')
@@ -27,7 +28,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4" style="background-color:#252565"></div>
+            <div class="col-4" style="background-color:#252565">
+
+            </div>
         </div>
     </div>
 @endsection
