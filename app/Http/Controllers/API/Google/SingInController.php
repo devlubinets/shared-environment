@@ -31,6 +31,6 @@ class SingInController extends Controller
         /*@todo: add flash message for login*/
         Auth::login($user, true);
 
-        return back();
+        return redirect()->route("mvp_features");
     }
 }

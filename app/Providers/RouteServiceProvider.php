@@ -43,11 +43,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(): void
     {
-        Route::prefix('web')
+        Route::prefix("")
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
 
-        Route::prefix('api')
+        Route::prefix("")
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }

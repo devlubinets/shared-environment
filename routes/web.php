@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Google\SingInController;
 use App\Http\Controllers\API\V1\GetEnvController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\EnvController;
@@ -18,7 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post("api/google/sing-in", [SingInController::class, "handle"])->name("api.google.sing-in");
+
 Route::group(["middleware" => ["web"]], function () {
+    # Authentication
+    Route::get("/login", [LoginController::class, "loginShow"])->name("login.form.main");
+    Route::post("/login", [LoginController::class, "login"])->name("login");
+
     Route::get('/', function () {
         $authUser = auth()->user();
         return view('welcome', ["authUser" => $authUser]);
@@ -32,7 +39,5 @@ Route::group(["middleware" => ["web"]], function () {
     Route::get("/user/dashboard", [DashboardController::class, "show"])->name("user.dashboard");
 });
 
-# Authentication
-Route::get("/login", [LoginController::class, "loginShow"])->name("login.form.main");
-Route::post("/login", [LoginController::class, "login"])->name("login");
+
 
