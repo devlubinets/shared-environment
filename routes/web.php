@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("api/google/sing-in", [SingInController::class, "handle"])->name("api.google.sing-in");
+
 
 Route::group(["middleware" => ["web"]], function () {
     # Authentication
